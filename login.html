@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Member Login — Cohen Brothers Judo Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0e10; --ink-2:#16181b; --ink-3:#212429; --line:rgba(244,241,234,.12);
+  --paper:#f4f1ea; --mute:rgba(244,241,234,.62);
+  --blue:#2357ff; --blue-d:#1638c4;
+  --display:'Anton', Impact, 'Arial Narrow', sans-serif;
+  --body:'Inter', system-ui, -apple-system, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.login-box{background:var(--ink-2);border:1.5px solid var(--line);padding:40px;max-width:440px;width:100%}
+.login-box h1{font-family:var(--display);font-size:48px;text-transform:uppercase;margin-bottom:8px;line-height:1}
+.login-box .subtitle{color:var(--mute);margin-bottom:32px;font-size:15px}
+.demo-note{background:rgba(35,87,255,.15);border:1px solid var(--blue);padding:16px;margin-bottom:24px;font-size:14px;line-height:1.6}
+.demo-note strong{color:var(--blue)}
+.field{margin-bottom:20px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.field select{width:100%;height:56px;background:var(--ink);border:1.5px solid var(--line);color:var(--paper);font-size:16px;font-family:var(--body);padding:0 16px;outline:none;transition:border-color .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f4f1ea' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.field select:focus{border-color:var(--blue)}
+.btn{display:block;width:100%;height:56px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;border:0;cursor:pointer;font-family:var(--body);transition:background .2s;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.btn:hover{background:var(--blue-d)}
+.back{display:inline-block;margin-top:24px;font-size:14px;color:var(--mute);text-decoration:underline}
+.back:hover{color:var(--paper)}
+</style>
+</head>
+<body>
+
+<div class="login-box">
+  <h1>Member<br>Login</h1>
+  <p class="subtitle">Access your family dashboard and manage memberships.</p>
+  
+  <div class="demo-note">
+    <strong>Demo Mode:</strong> This is a prototype. Select a role to view the dashboard without real authentication.
+  </div>
+  
+  <form onsubmit="handleLogin(event)">
+    <div class="field">
+      <label>Select Demo Role</label>
+      <select id="role" required>
+        <option value="">Choose a role...</option>
+        <option value="parent">Parent/Guardian (Sarah Anderson)</option>
+        <option value="admin">Admin/Owner</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn">Continue →</button>
+  </form>
+  
+  <a href="index.html" class="back">← Back to home</a>
+</div>
+
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+  const role = document.getElementById('role').value;
+  
+  if (role === 'admin') {
+    window.location.href = '/admin/index.html';
+  } else if (role === 'parent') {
+    window.location.href = '/account.html';
+  }
+}
+</script>
+
+</body>
+</html>
