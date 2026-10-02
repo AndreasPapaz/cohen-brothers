@@ -5,3 +5,10 @@
 .vscode/
 .idea/
 node_modules/
+.env
+.env.local
+.env.*.local
+.vercel
+*.db
+*.db-journal
+.demo-data/
