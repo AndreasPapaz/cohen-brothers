@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin Dashboard — Cohen Brothers Judo Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0e10; --ink-2:#16181b; --ink-3:#212429; --line:rgba(244,241,234,.12);
+  --paper:#f4f1ea; --mute:rgba(244,241,234,.62);
+  --blue:#2357ff; --blue-d:#1638c4;
+  --display:'Anton', Impact, 'Arial Narrow', sans-serif;
+  --body:'Inter', system-ui, -apple-system, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --pad:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.wrap{padding:0 var(--pad);max-width:1320px;margin:0 auto;width:100%}
+.hdr{padding:20px var(--pad);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-family:var(--display);font-size:32px;text-transform:uppercase;letter-spacing:-.005em}
+.hdr .user{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--mute)}
+.hdr .user span{color:var(--blue)}
+
+.kpis{display:grid;grid-template-columns:1fr;gap:12px;padding:24px var(--pad)}
+.kpi{background:var(--ink-2);border:1.5px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s}
+.kpi:hover{border-color:rgba(35,87,255,.5)}
+.kpi .label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.kpi .value{font-family:var(--display);font-size:48px;line-height:1;color:var(--paper)}
+.kpi .value.accent{color:var(--blue)}
+.kpi .value.warn{color:#ff6b35}
+
+.tabs{display:flex;gap:8px;padding:0 var(--pad);border-bottom:1px solid var(--line);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:14px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);border:0;background:transparent;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s, border-color .2s}
+.tab:hover{color:var(--paper)}
+.tab.active{color:var(--paper);border-bottom-color:var(--blue)}
+
+.content{padding:24px var(--pad);flex:1}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead{border-bottom:1.5px solid var(--line)}
+th{text-align:left;padding:12px 8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+td{padding:14px 8px;border-bottom:1px solid rgba(244,241,234,.06)}
+tr:last-child td{border-bottom:0}
+.member-name{font-weight:600;color:var(--paper)}
+.member-program{font-size:13px;color:var(--mute);margin-top:2px}
+.badge{display:inline-block;padding:4px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink-3);border:1px solid var(--line);white-space:nowrap}
+.badge.active{background:rgba(35,87,255,.2);border-color:var(--blue);color:var(--blue)}
+.badge.warn{background:rgba(255,107,53,.2);border-color:#ff6b35;color:#ff6b35}
+.badge.pending{background:rgba(244,241,234,.1);border-color:var(--line);color:var(--mute)}
+
+.actions{display:flex;gap:8px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 20px;font-weight:600;font-size:14px;border-radius:0;border:0;cursor:pointer;font-family:var(--body);transition:background .2s}
+.btn-primary{background:var(--blue);color:#fff;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.btn-primary:hover{background:var(--blue-d)}
+.btn-ghost{background:transparent;color:var(--paper);border:1.5px solid rgba(244,241,234,.4)}
+.btn-ghost:hover{border-color:var(--paper)}
+
+.form-section{background:var(--ink-2);border:1.5px solid var(--line);padding:24px;margin-bottom:24px}
+.form-section h2{font-family:var(--display);font-size:28px;text-transform:uppercase;margin-bottom:20px}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.field input,.field select{width:100%;height:48px;background:var(--ink);border:1.5px solid var(--line);color:var(--paper);font-size:15px;font-family:var(--body);padding:0 14px;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--blue)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f4f1ea' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+
+.empty{text-align:center;padding:60px 20px;color:var(--mute)}
+.empty .icon{font-size:48px;margin-bottom:16px;opacity:.3}
+
+@media (min-width:900px){
+  :root{--pad:48px}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+  .kpi{padding:24px}
+  .kpi .value{font-size:64px}
+  table{font-size:15px}
+  th{padding:14px 12px}
+  td{padding:16px 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>Admin Dashboard</h1>
+  <div class="user">Logged in as <span>admin@cohensjudoclub.com</span></div>
+</div>
+
+<div class="kpis" id="kpis">
+  <div class="kpi">
+    <div class="label">Active Members</div>
+    <div class="value" id="count-active">—</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Expiring · 30 Days</div>
+    <div class="value accent" id="count-expiring-30">—</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Expiring · 7 Days</div>
+    <div class="value accent" id="count-expiring-7">—</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Expires Today</div>
+    <div class="value warn" id="count-expires-today">—</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Lapsed</div>
+    <div class="value" id="count-expired">—</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Pending ACH</div>
+    <div class="value" id="count-pending-ach">—</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="loadTab('active')">Active Roster</button>
+  <button class="tab" onclick="loadTab('expires_today')">Expires Today</button>
+  <button class="tab" onclick="loadTab('expiring_7')">Expiring · 7 Days</button>
+  <button class="tab" onclick="loadTab('expiring_30')">Expiring · 30 Days</button>
+  <button class="tab" onclick="loadTab('lapsed')">Lapsed</button>
+  <button class="tab" onclick="loadTab('pending_ach')">Pending ACH</button>
+  <button class="tab" onclick="loadTab('record')">Record Payment</button>
+</div>
+
+<div class="content">
+  <div id="tab-content"></div>
+</div>
+
+<script>
+let currentData = null;
+
+async function loadDashboard() {
+  try {
+    const res = await fetch('/api/admin/members?bucket=all');
+    const data = await res.json();
+    currentData = data;
+    
+    // Update KPIs
+    document.getElementById('count-active').textContent = data.counts.active || 0;
+    document.getElementById('count-expiring-30').textContent = data.counts.expiring_30 || 0;
+    document.getElementById('count-expiring-7').textContent = data.counts.expiring_7 || 0;
+    document.getElementById('count-expires-today').textContent = data.counts.expires_today || 0;
+    document.getElementById('count-expired').textContent = data.counts.expired || 0;
+    document.getElementById('count-pending-ach').textContent = data.counts.pending_ach || 0;
+    
+    // Load default tab
+    loadTab('active');
+  } catch (error) {
+    console.error('Error loading dashboard:', error);
+    document.getElementById('tab-content').innerHTML = '<div class="empty"><div class="icon">⚠️</div><p>Error loading data. Make sure DEMO_MODE=true is set.</p></div>';
+  }
+}
+
+async function loadTab(bucket) {
+  // Update active tab
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event?.target?.classList.add('active');
+  
+  if (bucket === 'record') {
+    showRecordPaymentForm();
+    return;
+  }
+  
+  try {
+    const res = await fetch(`/api/admin/members?bucket=${bucket}`);
+    const data = await res.json();
+    
+    if (data.members.length === 0) {
+      document.getElementById('tab-content').innerHTML = `
+        <div class="empty">
+          <div class="icon">✓</div>
+          <p>No members in this category</p>
+        </div>
+      `;
+      return;
+    }
+    
+    const html = `
+      <div class="actions">
+        <button class="btn btn-primary" onclick="exportCSV()">Export CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Age</th>
+              <th>Program</th>
+              <th>Paid Through</th>
+              <th>Status</th>
+              <th>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.members.map(m => `
+              <tr>
+                <td>
+                  <div class="member-name">${m.first_name} ${m.last_name}</div>
+                  <div class="member-program">${m.household_name}</div>
+                </td>
+                <td>${m.birth_date ? calculateAge(m.birth_date) : '—'}</td>
+                <td>${m.program_name || '—'}</td>
+                <td>${m.last_paid_end || 'Never'}</td>
+                <td><span class="badge ${getBadgeClass(m.bucket)}">${formatBucket(m.bucket)}</span></td>
+                <td>
+                  <div>${m.email}</div>
+                  <div style="font-size:13px;color:var(--mute);margin-top:2px">${m.phone || ''}</div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+    
+    document.getElementById('tab-content').innerHTML = html;
+  } catch (error) {
+    console.error('Error loading tab:', error);
+  }
+}
+
+function showRecordPaymentForm() {
+  const html = `
+    <div class="form-section">
+      <h2>Record Offline Payment</h2>
+      <form onsubmit="recordPayment(event)">
+        <div class="field">
+          <label>Household</label>
+          <select id="household" required>
+            <option value="">Select household...</option>
+            ${Array.from(new Set(currentData.members.map(m => m.household_name))).map(name => {
+              const member = currentData.members.find(m => m.household_name === name);
+              return `<option value="${member.household_id}">${name}</option>`;
+            }).join('')}
+          </select>
+        </div>
+        
+        <div class="field">
+          <label>Payment Source</label>
+          <select id="source" required>
+            <option value="">Select source...</option>
+            <option value="cash">Cash</option>
+            <option value="zelle">Zelle</option>
+            <option value="check">Check</option>
+            <option value="venmo">Venmo</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="field">
+          <label>Reference (check #, confirmation, etc.)</label>
+          <input type="text" id="reference" placeholder="Optional">
+        </div>
+        
+        <div class="field">
+          <label>Amount (in cents)</label>
+          <input type="number" id="amount" required placeholder="51500">
+        </div>
+        
+        <div class="field">
+          <label>Notes</label>
+          <input type="text" id="notes" placeholder="Program, term, etc.">
+        </div>
+        
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Record Payment</button>
+          <button type="button" class="btn btn-ghost" onclick="loadTab('active')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  `;
+  
+  document.getElementById('tab-content').innerHTML = html;
+}
+
+async function recordPayment(e) {
+  e.preventDefault();
+  
+  const data = {
+    household_id: document.getElementById('household').value,
+    source: document.getElementById('source').value,
+    reference: document.getElementById('reference').value,
+    items: [{
+      member_id: 'demo-member-id',
+      program_id: 'warriors',
+      term_id: '2027-Q1',
+      amount_cents: parseInt(document.getElementById('amount').value)
+    }]
+  };
+  
+  try {
+    const res = await fetch('/api/admin/offline-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if (res.ok) {
+      alert('Payment recorded successfully!');
+      loadDashboard();
+      loadTab('active');
+    } else {
+      alert('Error recording payment');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error recording payment');
+  }
+}
+
+async function exportCSV() {
+  try {
+    const res = await fetch('/api/admin/export');
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `roster-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+  } catch (error) {
+    console.error('Error exporting:', error);
+    alert('Error exporting CSV');
+  }
+}
+
+function calculateAge(birthDate) {
+  const birth = new Date(birthDate);
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  const m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+  return age;
+}
+
+function getBadgeClass(bucket) {
+  if (bucket === 'active') return 'active';
+  if (bucket === 'expired' || bucket === 'expires_today') return 'warn';
+  if (bucket.startsWith('expiring')) return 'warn';
+  return 'pending';
+}
+
+function formatBucket(bucket) {
+  const map = {
+    'active': 'Active',
+    'expiring_30': 'Expiring 30d',
+    'expiring_7': 'Expiring 7d',
+    'expires_today': 'Today',
+    'expired': 'Lapsed',
+    'pending': 'Pending'
+  };
+  return map[bucket] || bucket;
+}
+
+// Load on page load
+loadDashboard();
+</script>
+
+</body>
+</html>
