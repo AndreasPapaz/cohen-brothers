@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pricing — Cohen Brothers Judo Club</title>
+<meta name="description" content="2026 Pricing for Cohen Brothers Judo Club programs. Quarterly and yearly tuition for Little Judokas, Judo Cobras, Warriors, Gladiators, and Adult programs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0e10; --ink-2:#16181b; --ink-3:#212429; --line:rgba(244,241,234,.12);
+  --paper:#f4f1ea; --mute:rgba(244,241,234,.62);
+  --blue:#2357ff; --blue-d:#1638c4;
+  --display:'Anton', Impact, 'Arial Narrow', sans-serif;
+  --body:'Inter', system-ui, -apple-system, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --pad:20px; --bar:76px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip;padding-bottom:var(--bar)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{padding:0 var(--pad);max-width:1320px;margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--blue);transform:skewX(-30deg)}
+.h-display{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.88;letter-spacing:-.005em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:56px;padding:0 24px;font-weight:700;font-size:15px;letter-spacing:.02em;border-radius:0;border:0;cursor:pointer;font-family:var(--body);transition:transform .2s, background .2s}
+.btn-primary{background:var(--blue);color:#fff;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%);padding-right:36px}
+.btn-primary:hover{background:var(--blue-d)}
+.btn-ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(244,241,234,.55)}
+.arrow{width:18px;height:18px;flex:none}
+
+/* HEADER */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 var(--pad);
+  background:linear-gradient(180deg,rgba(13,14,16,.85),rgba(13,14,16,0));}
+.hdr .logo img{height:40px;width:auto}
+.nav{display:none}
+.burger{width:56px;height:56px;display:grid;place-items:center;background:var(--paper);border:0;cursor:pointer}
+.burger span{display:block;width:26px;height:3px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;height:3px;background:var(--ink)}
+.burger span::before{top:-8px;width:26px}.burger span::after{top:8px;width:16px}
+.menu{position:fixed;inset:0;z-index:60;background:var(--blue);padding:100px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.menu.open{transform:none}
+.menu a.big{font-family:var(--display);font-size:56px;line-height:1.05;text-transform:uppercase;display:block}
+.menu .close{position:absolute;top:6px;right:12px;width:56px;height:56px;background:var(--ink);color:var(--paper);border:0;font-size:28px;cursor:pointer}
+
+/* PRICING HERO */
+.price-hero{padding:100px var(--pad) 60px;text-align:center}
+.price-hero .eyebrow{justify-content:center;margin-bottom:20px}
+.price-hero h1{font-size:clamp(64px,18vw,140px);margin-bottom:18px}
+.price-hero h1 .b{color:var(--blue)}
+.price-hero p{color:var(--mute);max-width:48ch;margin:0 auto 30px;font-size:17px}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;justify-content:center;margin-bottom:50px}
+.toggle{display:inline-flex;background:var(--ink-2);border:1.5px solid var(--line);overflow:hidden}
+.toggle button{height:50px;padding:0 28px;background:transparent;border:0;color:var(--mute);font-family:var(--body);font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;position:relative}
+.toggle button.active{background:var(--blue);color:#fff}
+.toggle button:not(:last-child)::after{content:"";position:absolute;right:0;top:12px;bottom:12px;width:1px;background:var(--line)}
+
+/* PRICING CARDS */
+.pricing-grid{display:grid;gap:20px;padding:0 var(--pad) 80px;max-width:1320px;margin:0 auto}
+.p-card{background:var(--ink-2);border:1.5px solid var(--line);padding:28px 22px;position:relative;transition:border-color .3s}
+.p-card:hover{border-color:rgba(35,87,255,.5)}
+.p-card .badge{position:absolute;top:0;right:22px;transform:translateY(-50%);background:var(--blue);color:#fff;padding:6px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.p-card .head{border-bottom:1.5px solid var(--line);padding-bottom:20px;margin-bottom:20px}
+.p-card .head .age{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.p-card .head h3{font-family:var(--display);font-size:44px;line-height:.9;text-transform:uppercase;margin-bottom:12px}
+.p-card .head .sch{font-size:14px;color:rgba(244,241,234,.75);line-height:1.6}
+.p-card .head .sch b{color:var(--paper);font-weight:600}
+.p-card .pricing{margin-bottom:20px}
+.p-card .price-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.p-card .price-row .label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.p-card .price-row .amount{font-size:32px;font-weight:800;color:var(--paper)}
+.p-card .price-row .amount .per{font-size:13px;font-weight:600;color:var(--mute);margin-left:4px}
+.p-card .savings{display:inline-block;background:rgba(35,87,255,.2);color:var(--blue);padding:6px 10px;font-size:12px;font-weight:700;letter-spacing:.04em;margin-bottom:12px}
+.p-card .avg{font-family:var(--mono);font-size:12px;color:rgba(244,241,234,.65);margin-bottom:20px}
+.p-card .cta{width:100%;height:52px;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:700;font-size:15px;border:0;cursor:pointer;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:background .2s}
+.p-card .cta:hover{background:var(--blue-d)}
+
+/* COACHES FEE */
+.coaches-fee{background:var(--ink-3);padding:60px var(--pad);margin-bottom:60px}
+.coaches-fee .wrap{max-width:900px}
+.coaches-fee h2{font-family:var(--display);font-size:48px;line-height:.9;text-transform:uppercase;margin-bottom:20px}
+.coaches-fee h2 .b{color:var(--blue)}
+.coaches-fee p{color:rgba(244,241,234,.8);margin-bottom:16px;font-size:15.5px;line-height:1.7}
+.coaches-fee .fee-boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.coaches-fee .fee-box{background:var(--ink-2);border:1.5px solid var(--line);padding:20px;text-align:center}
+.coaches-fee .fee-box .n{font-family:var(--display);font-size:42px;color:var(--blue);margin-bottom:8px}
+.coaches-fee .fee-box .l{font-size:13px;color:var(--mute);font-weight:600}
+.coaches-fee .note{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mute);margin-top:20px;text-transform:uppercase}
+
+/* POLICIES */
+.policies{padding:0 var(--pad) 80px;max-width:900px;margin:0 auto}
+.policies h2{font-family:var(--display);font-size:48px;line-height:.9;text-transform:uppercase;margin-bottom:30px}
+.policies h2 .b{color:var(--blue)}
+.policies .section{margin-bottom:32px}
+.policies .section h3{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--paper)}
+.policies .section p{color:rgba(244,241,234,.8);line-height:1.7;font-size:15.5px;margin-bottom:12px}
+.policies .section ul{list-style:none;margin-left:18px}
+.policies .section li{color:rgba(244,241,234,.8);line-height:1.7;font-size:15.5px;margin-bottom:8px;position:relative;padding-left:18px}
+.policies .section li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--blue);transform:rotate(45deg)}
+.policies .pdf-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:14px;color:var(--mute);text-decoration:underline;transition:color .2s}
+.policies .pdf-link:hover{color:var(--paper)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:56px 0 40px;overflow:hidden}
+footer .flogo{height:76px;width:auto;margin-bottom:28px}
+footer .big{font-family:var(--display);text-transform:uppercase;font-size:clamp(60px,19vw,220px);line-height:.85;color:transparent;-webkit-text-stroke:1px rgba(244,241,234,.28);margin:16px 0 30px;white-space:nowrap}
+.fcols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:36px}
+.fcols h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:500}
+.fcols a,.fcols p{display:block;font-size:14.5px;margin-bottom:6px}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;color:var(--mute);padding-top:20px;border-top:1px solid var(--line)}
+
+/* STICKY BAR */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(13,14,16,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:56px 1fr;gap:8px}
+.sticky .call{height:56px;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(244,241,234,.4)}
+.sticky .btn{width:100%;height:56px}
+
+/* DESKTOP */
+@media (min-width:900px){
+  :root{--pad:48px;--bar:0px}
+  .sticky{display:none}
+  .hdr{height:88px;padding:0 var(--pad)}
+  .hdr .logo img{height:52px}
+  .burger{display:none}
+  .nav{display:flex;align-items:center;gap:34px;font-weight:600;font-size:14px;letter-spacing:.02em}
+  .nav a:not(.btn){opacity:.85}.nav a:not(.btn):hover{opacity:1}
+  .nav .btn{height:48px;font-size:14px}
+  .price-hero{padding:140px var(--pad) 80px}
+  .price-hero h1{font-size:clamp(100px,10vw,140px)}
+  .pricing-grid{grid-template-columns:repeat(2,1fr);gap:24px;padding-bottom:120px}
+  .coaches-fee{padding:80px var(--pad)}
+  .coaches-fee h2{font-size:64px}
+  .coaches-fee .fee-boxes{grid-template-columns:repeat(2,200px);justify-content:center;gap:24px}
+  .policies{padding-bottom:120px}
+  .policies h2{font-size:64px}
+  .fcols{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <a class="logo" href="index.html" aria-label="Cohen Brothers Judo Club home"><img src="img/logo-white.png" alt="Cohen Brothers Judo Club"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html#programs">Programs</a><a href="index.html#coaches">Coaches</a><a href="pricing.html">Pricing</a><a href="index.html#schedule">Schedule</a><a href="index.html#location">Visit</a>
+    <a class="btn btn-primary" href="index.html#trial">Book a free trial</a>
+  </nav>
+  <button class="burger" aria-label="Open menu" onclick="document.getElementById('menu').classList.add('open')"><span></span></button>
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="close" aria-label="Close menu" onclick="this.parentNode.classList.remove('open')">✕</button>
+  <div>
+    <a class="big" href="index.html#programs" onclick="menu.classList.remove('open')">Programs</a>
+    <a class="big" href="index.html#coaches" onclick="menu.classList.remove('open')">Coaches</a>
+    <a class="big" href="pricing.html" onclick="menu.classList.remove('open')">Pricing</a>
+    <a class="big" href="index.html#schedule" onclick="menu.classList.remove('open')">Schedule</a>
+    <a class="big" href="index.html#location" onclick="menu.classList.remove('open')">Visit</a>
+  </div>
+  <a class="btn" style="background:var(--ink);color:var(--paper);width:100%" href="index.html#trial" onclick="menu.classList.remove('open')">Book a free trial →</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="price-hero">
+  <div class="eyebrow">Prices for 2026</div>
+  <h1 class="h-display">Train with<br><span class="b">the best.</span></h1>
+  <p>Quarterly and yearly tuition for all programs. Pay quarterly (every 3 months) or save 10% by paying for the full year in January.</p>
+  
+  <div class="toggle-wrap">
+    <div class="toggle">
+      <button class="active" onclick="togglePricing('quarterly')">Quarterly</button>
+      <button onclick="togglePricing('yearly')">Yearly <small style="font-size:11px;margin-left:4px;opacity:.7">SAVE 10%</small></button>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING GRID -->
+<div class="pricing-grid">
+  <!-- Little Judokas -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Ages 3–4</div>
+      <h3>Little<br>Judokas</h3>
+      <div class="sch">
+        <b>Monday & Wednesday</b><br>
+        4:15–5:00 pm (45 min)<br>
+        1–2x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$380<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $14 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$1,375<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $12.50 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+
+  <!-- Judo Cobras -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Ages 5–7</div>
+      <h3>Judo<br>Cobras</h3>
+      <div class="sch">
+        <b>Monday, Wednesday & Friday</b><br>
+        5:00–6:00 pm (1 hour)<br>
+        1–3x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$515<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $13.50 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$1,855<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $12 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+
+  <!-- Judo Warriors -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Ages 6–12</div>
+      <h3>Judo<br>Warriors</h3>
+      <div class="sch">
+        <b>Mon, Tue, Wed & Fri</b><br>
+        6:05–7:35 pm (1.5 hours)<br>
+        <small style="color:var(--mute)">(Tuesday is 5:30–6:30 pm)</small><br>
+        1–4x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$650<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $12.50 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$2,350<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $11 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+
+  <!-- Judo Gladiators -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Ages 10–17</div>
+      <h3>Judo<br>Gladiators</h3>
+      <div class="sch">
+        <b>Mon, Tue, Wed & Fri</b><br>
+        7:30–9:00 pm (1.5 hours)<br>
+        <small style="color:var(--mute)">(Tuesday is 5:30–6:30 pm)</small><br>
+        1–4x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$650<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $12.50 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$2,350<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $11 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+
+  <!-- Collegiate High Performance -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Collegiate</div>
+      <h3>High<br>Performance</h3>
+      <div class="sch">
+        <b>Monday, Wednesday & Friday</b><br>
+        7:30–9:00 pm<br>
+        1–3x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$515<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $13.50 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$1,855<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $12 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+
+  <!-- Adult Rec -->
+  <article class="p-card">
+    <div class="head">
+      <div class="age">Adults</div>
+      <h3>Adult<br>Rec Team</h3>
+      <div class="sch">
+        <b>Monday, Wednesday & Friday</b><br>
+        7:30–9:00 pm<br>
+        1–3x per week
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="quarterly-price">
+        <div class="price-row">
+          <span class="label">Quarterly</span>
+          <span class="amount">$400<span class="per">/3 months</span></span>
+        </div>
+        <div class="avg">Averages to about $10.50 per class</div>
+      </div>
+      <div class="yearly-price" style="display:none">
+        <div class="price-row">
+          <span class="label">Yearly (paid in Jan)</span>
+          <span class="amount">$1,450<span class="per">/year</span></span>
+        </div>
+        <div class="savings">10% savings</div>
+        <div class="avg">Averages to about $9.50 per class</div>
+      </div>
+    </div>
+    <button class="cta" onclick="window.location.href='index.html#trial'">Book free trial →</button>
+  </article>
+</div>
+
+<!-- COACHES FEE -->
+<section class="coaches-fee">
+  <div class="wrap">
+    <h2>Annual <span class="b">Coaches Fee</span></h2>
+    <p>In addition to tuition, all families pay an annual coaches fee that supports bringing world-class athletes and coaches to the club for tournaments and clinics. This fee is mandatory for all programs except Little Judokas (unless they plan to move up to Judo Cobras).</p>
+    <div class="fee-boxes">
+      <div class="fee-box">
+        <div class="n">$225</div>
+        <div class="l">For 1 child</div>
+      </div>
+      <div class="fee-box">
+        <div class="n">$350</div>
+        <div class="l">For 2–3 children</div>
+      </div>
+    </div>
+    <p class="note">Little Judokas exempt unless moving up to Cobras</p>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="policies">
+  <h2>How <span class="b">payment works</span></h2>
+  
+  <div class="section">
+    <h3>Payment schedule</h3>
+    <p>Tuition is paid either yearly (in January only) or quarterly. Quarterly payments are due on the first of January, April, July, and October. A late fee applies if payment is missed. We do not accept monthly or per-class payments.</p>
+  </div>
+
+  <div class="section">
+    <h3>Payment methods</h3>
+    <p>We accept:</p>
+    <ul>
+      <li>Chase QuickPay / Zelle to <b>cohensjudo@gmail.com</b></li>
+      <li>Venmo to <b>@ACjudo8190</b></li>
+      <li>Cash or check</li>
+    </ul>
+    <p>Credit cards are not accepted.</p>
+  </div>
+
+  <div class="section">
+    <h3>What's included</h3>
+    <p>All prices are for full membership. You're welcome to attend 1, 2, or 3+ times per week — it's your choice. Tuition is not prorated for attending fewer days or for scheduled holidays. We recommend attending as often as your schedule allows to get the most from training.</p>
+  </div>
+
+  <div class="section">
+    <h3>Refunds & restarts</h3>
+    <p>We have a no-refund policy. Planning ahead for tournaments, clinics, and visiting coaches requires commitments we make months in advance. If you stop training and later want to restart, you'll pay the current rates when you return.</p>
+  </div>
+
+  <a class="pdf-link" href="https://www.cohensjudoclub.com/Price_List.pdf" target="_blank" rel="noopener">View official 2026 Price List PDF ↗</a>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <img class="flogo" src="img/logo-white.png" alt="Cohen Brothers Judo Club">
+    <div class="fcols">
+      <div><h4>Train</h4><a href="index.html#programs">Little Judokas</a><a href="index.html#programs">Judo</a><a href="index.html#programs">Wrestling</a><a href="index.html#programs">Private classes</a></div>
+      <div><h4>Club</h4><a href="index.html#coaches">Coaches</a><a href="index.html#reviews">Reviews</a><a href="pricing.html">Pricing</a><a href="index.html#schedule">Schedule</a><a href="index.html#trial">Free trial</a></div>
+      <div><h4>Visit</h4><p>150 N Fairway Dr<br>Vernon Hills, IL 60061</p></div>
+      <div><h4>Contact</h4><a href="tel:+18473727373">847-372-7373</a><a href="mailto:CohensJudo@gmail.com">CohensJudo@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="big" aria-hidden="true">Since 1992 · Since 1992</div>
+  <div class="wrap legal"><span>© 2026 Cohen Brothers Judo Club</span><span>Judo · Wrestling · Vernon Hills, IL</span></div>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky">
+  <a class="call" href="tel:+18473727373" aria-label="Call the club"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
+  <a class="btn btn-primary" href="index.html#trial">Book free trial <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+
+<script>
+function togglePricing(mode) {
+  const quarterly = document.querySelectorAll('.quarterly-price');
+  const yearly = document.querySelectorAll('.yearly-price');
+  const buttons = document.querySelectorAll('.toggle button');
+  
+  if (mode === 'quarterly') {
+    quarterly.forEach(el => el.style.display = 'block');
+    yearly.forEach(el => el.style.display = 'none');
+    buttons[0].classList.add('active');
+    buttons[1].classList.remove('active');
+  } else {
+    quarterly.forEach(el => el.style.display = 'none');
+    yearly.forEach(el => el.style.display = 'block');
+    buttons[0].classList.remove('active');
+    buttons[1].classList.add('active');
+  }
+}
+</script>
+</body>
+</html>
